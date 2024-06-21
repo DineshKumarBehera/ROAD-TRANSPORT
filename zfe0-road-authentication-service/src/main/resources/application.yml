@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: zfe0-road-ta-ti-bf-ltr
+  #  server:
+  #    port: 8091
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #url: ${CFGMAP_DS_SQLDB_URL}
+    #username: ${VAULT_DS_USERID}
+    #password: ${VAULT_DS_PASSWORD}
+    url: jdbc:mysql://localhost:3306/DZFE0?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+
+  hikari:
+    connection-init-sql: SELECT 1
+    connection-test-query: SELECT 1
+    minimum-idle: 2
+    maximum-pool-size: 10
+    idle-timeout: 600000
+    connection-timeout: 300000
+    leak-detection-threshold: 300000
+
+  jpa:
+    properties:
+      hibernate.dialect: ${DB_DIALECT}
+      hibernate.default_schema: ${DB_SCHEMA}
+#  cloud:
+#    azure:
+#      active-directory:
+#        enabled: ${AZUREAD_ENABLED}
+#        profile:
+#          tenant-id: ${AZUREAD_TENANT_ID}
+#          environment:
+#            active-directory-endpoint: ${AZUREAD_ENDPOINT}
+#        credential:
+#          client-id: ${AZUREAD_CLIENT_ID}
+#          client-secret: ${AZUREAD_CLIENT_SECRET}
+#          authorization-grant-type: ${AZUREAD_GRANT_TYPE}
+rbc:
+  road:
+    cors-uri: http://myweb.com
+
+
+  email:
+    send-to: roaddev.smtpemailbox@sterbc.com
+    send-from: roaddev.smtpemailbox@sterbc.com
+    html-format: true
+    uri: https://zfe0-road-di-tt-bx-misc-master-ocp4-zfe0-private-dev.apps.ocp-sai-g1.saifg.rbc.com/v1/email/sendEmail
+
+#logging:
+#  level:
+#    org:
+#      hibernate:
+#        SQL: DEBUG
+#        type:
+#          descriptor:
+#            sql:
+#              BasicBinder: TRACE
+#          EnumType: TRACE
+
+
+velocityEngine:
+  resource-loader:
+    classpath:
+      class: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader

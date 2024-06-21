@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: zfe0-road-ta-ti-bf-ltr
+  #  server:
+  #    port: 8091
+  datasource:
+    url: jdbc:mysql://localhost:3306/dzfe0
+    username: root
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+#  hikari:
+#    connection-init-sql: SELECT 1
+#    connection-test-query: SELECT 1
+#    minimum-idle: 2
+#    maximum-pool-size: 10
+#    idle-timeout: 600000
+#    connection-timeout: 300000
+#    leak-detection-threshold: 300000
+
+
+
+#  email:
+#    send-to: roaddev.smtpemailbox@sterbc.com
+#    send-from: roaddev.smtpemailbox@sterbc.com
+#    html-format: true
+#    uri: https://zfe0-road-di-tt-bx-misc-master-ocp4-zfe0-private-dev.apps.ocp-sai-g1.saifg.rbc.com/v1/email/sendEmail
+
+#logging:
+#  level:
+#    org:
+#      hibernate:
+#        SQL: DEBUG
+#        type:
+#          descriptor:
+#            sql:
+#              BasicBinder: TRACE
+#          EnumType: TRACE
+
+
+velocityEngine:
+  resource-loader:
+    classpath:
+      class: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader

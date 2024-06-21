@@ -1,0 +1,74 @@
+spring:
+  profiles:
+    active: ${PROFILES_ACTIVE}
+  application:
+    name: zfe0-road-eod-process
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+ibm:
+  mq:
+    queue-manager: MY_QUEUE_MANAGER
+    channel: MY_CHANNEL
+    conn-name: localhost(2020)
+    user: ibmmq
+    umg-outbound-queue: UMG_UMGOutbound_Queue
+rbc:
+  road:
+    scheduler:
+      eod:
+        cron-expression: ${RBC_ROAD_SCHEDULER_EOD_CRON_EXPRESSION}
+        time-zone: ${RBC_ROAD_SCHEDULER_EOD_TIME_ZONE}
+        run-eod-scheduler: ${RBC_ROAD_SCHEDULER_EOD_CRON_RUN_EOD_SCHEDULER}
+        eod-file-path: ${RBC_ROAD_SCHEDULER_EOD_LOCAL_FILE_PATH}
+        report-log-file-path: ${RBC_ROAD_SCHEDULER_EOD_LOCAL_REPORT_LOG_FILE_PATH}
+      ddr:
+        cron-expression: ${RBC_ROAD_SCHEDULER_DDR_CRON_EXPRESSION}
+        time-zone: ${RBC_ROAD_SCHEDULER_DDR_TIME_ZONE}
+        run-ddr-scheduler: ${RBC_ROAD_SCHEDULER_DDR_RUN_DDR_SCHEDULER}
+        ddr-file-path: ${RBC_ROAD_SCHEDULER_DDR_LOCAL_FILE_PATH}
+      proactive:
+        cron-expression: ${RBC_ROAD_SCHEDULER_PROACTIVE_CRON_EXPRESSION}
+        time-zone: ${RBC_ROAD_SCHEDULER_PROACTIVE_TIME_ZONE}
+        run-proactive-scheduler: ${RBC_ROAD_SCHEDULER_PROACTIVE_RUN_PROACTIVE_SCHEDULER}
+        proactive-file-path: ${RBC_ROAD_SCHEDULER_PROACTIVE_LOCAL_FILE_PATH}
+
+    nas:
+      host: ${NAS_HOST}
+      username: ${NAS_USERID}
+      password: ${NAS_PWD}
+      remote-file-path: ${PROACTIVE_REMOTE_FILE_PATH}
+    sftp:
+      host: ${SFTP_HOST}
+      username: ${SFTP_USERID}
+      password: ${SFTP_PWD}
+      remote-file-path: ${RBC_ROAD_SCHEDULER_EOD_REMOTE_FILE_PATH}
+    datasource:
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      url: ${CFGMAP_DS_SQLDB_URL}
+      username: ${VAULT_DS_USERID}
+      password: ${VAULT_DS_PASSWORD}
+      schema: dbo
+      dialect: org.hibernate.dialect.SQLServerDialect
+    mainframe-datasource:
+      driver-class-name: com.ibm.db2.jcc.DB2Driver
+      dialect: org.hibernate.dialect.DB2Dialect
+      url: ${CFGMAP_DS_MAINFRAMEDB_URL}
+      username: ${DB2_MF_USERID}
+      password: ${DB2_MF_PASSWORD}
+      schema: ${CFGMAP_DS_MAINFRAMEDB_SCHEMA}
+    cage:
+      box-location-for-cage: 09700021
+    dummy:
+      dummy-account-branch: 091
+      dummy-account-number: 80438
+      dummy-account-type: 1
+      dummy-account-check-digit: 1
+      box-97-account-number: 09000097
+    cleanup:
+      ta-delete-cleanup-months: 84
+      ta-delete-last-used-months: 24
+      ta-delete-last-updated-months: 12
+      history-delete-months: 84

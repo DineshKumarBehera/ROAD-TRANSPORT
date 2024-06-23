@@ -20,6 +20,8 @@ phases:
       - docker build -t $REPOSITORY_URI:latest .
       - echo tagging the Docker image...
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - echo Logging into Docker Hub...
+      - echo "$DOCKERHUB_ACCESS_TOKEN" | docker login -u dbehera123 --password-stdin
   post_build:
     commands:
       - echo pushing Docker image to Amazon ECR started on `date`

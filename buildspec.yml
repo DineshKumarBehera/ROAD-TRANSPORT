@@ -11,6 +11,8 @@ phases:
       - REPOSITORY_URI=671341857449.dkr.ecr.us-east-1.amazonaws.com/cicdpipeline
       - echo setting image tag....
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+      - echo Logging into Docker Hub...
+      - echo "$DOCKERHUB_ACCESS_TOKEN" | docker login -u dbehera123 --password-stdin
   build:
     commands:
       - echo building and tagging started image on `date`
@@ -20,8 +22,6 @@ phases:
       - docker build -t $REPOSITORY_URI:latest .
       - echo tagging the Docker image...
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
-      - echo Logging into Docker Hub...
-      - echo "$DOCKERHUB_ACCESS_TOKEN" | docker login -u dbehera123 --password-stdin
   post_build:
     commands:
       - echo pushing Docker image to Amazon ECR started on `date`
